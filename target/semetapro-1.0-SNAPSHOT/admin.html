@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Admin Dashboard</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <!--  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">-->
+        <!-- Theme style -->
+        <link rel="stylesheet" href="vendor/lte/css/AdminLTE.min.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+                 folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="vendor/lte/css/skins/_all-skins.min.css">
+        <!-- Morris chart -->
+        <link rel="stylesheet" href="vendor/morris.js/morris.css">
+        <!-- jvectormap -->
+        <link rel="stylesheet" href="vendor/jvectormap/jquery-jvectormap.css">
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="vendor/bootstrap-daterangepicker/daterangepicker.css">
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link rel="stylesheet" href="vendor/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        
+        <script type="text/javascript" src="controller/webconfig.js"></script>
+        <link rel="stylesheet" href="vendor/alert/sweetalert.css">
+        <link rel="stylesheet" href="css/myStyle.css">
+
+        <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+        <script type="text/javascript" src="vendor/angular/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="vendor/angular/angular-cookies.min.js"></script>
+        <script src="vendor/alert/sweetalert.min.js"></script>
+        <script src="route-app.js"></script>
+
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini" ng-app="AngularRouteApp">
+        <div class="wrapper" ng-controller="MstDasboardController" ng-init="getUserLogin()">
+
+            <header class="main-header">
+                <!-- Logo -->
+                <a ui-sref="/" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">
+                        <b>METAPRO</span>
+                </a>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="images/user.png" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">{{pullname}}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="images/user.png" class="img-circle" alt="User Image">
+
+                                        <p>
+                                            {{pullname}}
+                                        </p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a class="btn btn-default btn-flat" ng-click="logout()">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="images/user.png" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>{{pullname}}</p>
+                            <a href="#">
+                                <i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">METAPRO</li>
+                        <li>
+                            <a ui-sref="/">
+                                <i class="fa fa-home"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cog"></i>
+                                <span>Admin Panel</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a ui-sref="listuser">
+                                        <i class="fa fa-circle-o"></i> List</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="adduser">
+                                        <i class="fa fa-circle-o"></i> Create</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="/">
+                                        <i class="fa fa-circle-o"></i> Admin User Groups</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="changepassword">
+                                        <i class="fa fa-circle-o"></i> Change Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-users"></i>
+                                <span>Nasabah</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a ui-sref="listnasabah">
+                                        <i class="fa fa-circle-o"></i> List Nasabah</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="createnasabah">
+                                        <i class="fa fa-circle-o"></i> Create Nasabah</a>
+                                </li>
+                                <!-- <li>
+                                    <a ui-sref="setornasabah">
+                                        <i class="fa fa-circle-o"></i> Setor</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="tariknasabah">
+                                        <i class="fa fa-circle-o"></i> Tarik</a>
+                                </li> -->
+                                <li>
+                                    <a ui-sref="blocknasabah">
+                                        <i class="fa fa-circle-o"></i> Block Nasabah</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-money"></i>
+                                <span>Laku Pandai</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">    
+                                <li>
+                                    <a ui-sref="listsetortunai">
+                                        <i class="fa fa-circle-o"></i> Setor Tunai</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="listtariktunai">
+                                        <i class="fa fa-circle-o"></i> Tarik Tunai</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="listkirimdana">
+                                        <i class="fa fa-circle-o"></i> Kirim Dana</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file"></i>
+                                <span>Master Data</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a ui-sref="paymentlist">
+                                        <i class="fa fa-circle-o"></i> Master Payment</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="vendorlist">
+                                        <i class="fa fa-circle-o"></i> Master Vendor</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="maskapailist">
+                                        <i class="fa fa-circle-o"></i> Master Maskapai</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="airportlist">
+                                        <i class="fa fa-circle-o"></i> Master Airport</a>
+                                </li>
+    
+                            </ul>
+                        </li> -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-money"></i>
+                                <span>Master Produk</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a ui-sref="pulsalist">
+                                        <i class="fa fa-circle-o"></i> Pulsa</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="paketdatalist">
+                                        <i class="fa fa-circle-o"></i> Paket Data</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="gamelist">
+                                        <i class="fa fa-circle-o"></i> Game</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="ppoblist">
+                                        <i class="fa fa-circle-o"></i> PPOB</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="flightticketlist">
+                                        <i class="fa fa-circle-o"></i> Tiket</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="flightticketlist">
+                                        <i class="fa fa-circle-o"></i> Hotel</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview" ng-controller="ReportController">
+                            <a href="#">
+                                <i class="fa fa-file-pdf-o"></i>
+                                <span>Report</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a ng-click="doPrintPulsa()">
+                                        <i class="fa fa-circle-o"></i> Pulsa</a>
+                                </li>
+                                <li>
+                                    <a ng-click="doPrintPaketData()">
+                                        <i class="fa fa-circle-o"></i> Paket Data</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="gamelist">
+                                        <i class="fa fa-circle-o"></i> Game</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="ppoblist">
+                                        <i class="fa fa-circle-o"></i> PPOB</a>
+                                </li>
+                                <li>
+                                    <a ng-click="doPrintTrnRpt()">
+                                        <i class="fa fa-circle-o"></i> All Transaction</a>
+                                </li>
+                                <li>
+                                    <a ng-click="doPrintTrnFeeRpt()">
+                                        <i class="fa fa-circle-o"></i> Agen Fee</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li  ng-controller="ReportController"><a ng-click="updatePpob()"><i class="fa fa-circle-o text-red" ></i> <span>Update Product PPOB</span></a></li>
+                        <!--                        <li>
+                                                    <a ui-sref="trnreport">
+                                                        <i class="fa fa-file-pdf-o"></i>
+                                                        <span> Report</span>
+                                                    </a>
+                                                </li>-->
+                        <!--                        <li class="header">USEFUL LINKS</li>
+                            <li><a ui-sref="/"><i class="fa fa-circle-o text-red"></i> <span>Frontend Website</span></a></li>
+                            <li><a ui-sref="/"><i class="fa fa-circle-o text-yellow"></i> <span>API Site</span></a></li>
+                            <li><a ui-sref="/"><i class="fa fa-circle-o text-aqua"></i> <span>Github Repo</span></a></li>-->
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <div class="content-wrapper">
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <ui-view>
+                                        <p></p>
+                                    </ui-view>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.row -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- Content Wrapper. Contains page content -->
+
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 0.0.1
+                </div>
+                <strong>Copyright &copy; 2017
+                    <a href="#">Metapro</a>.</strong> All rights reserved.
+            </footer>
+
+
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- ./wrapper -->
+        <!-- jQuery 3 -->
+        <script src="vendor/jquery/dist/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+        
+         <!--        loading-->
+        <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/src/loadingoverlay.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.5.4/extras/loadingoverlay_progress/loadingoverlay_progress.min.js"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--        morris js-->
+        <script src="vendor/raphael/raphael.min.js"></script>
+        <script src="vendor/morris.js/morris.min.js"></script>
+
+        <!-- jvectormap -->
+        <script src="vendor/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="vendor/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <!-- datepicker -->
+        <script src="vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="vendor/lte/js/adminlte.min.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <!--        <script src="vendor/lte/js/pages/dashboard.js"></script>-->
+        <!-- AdminLTE for demo purposes -->
+        <script src="vendor/lte/js/demo.js"></script>
+
+        <script type="text/javascript" src="controller/MstDasboardController.js"></script>
+        <script type="text/javascript" src="controller/MstUserController.js"></script>
+        <script type="text/javascript" src="controller/MstNasabahController.js"></script>
+        <script type="text/javascript" src="controller/MstVendorController.js"></script>
+        <script type="text/javascript" src="controller/MstPulsaController.js"></script>
+        <script type="text/javascript" src="controller/MstPaketDataController.js"></script>
+        <script type="text/javascript" src="controller/MstMaskapaiController.js"></script>
+        <script type="text/javascript" src="controller/MstAirportController.js"></script>
+        <script type="text/javascript" src="controller/MstPaymentController.js"></script>
+        <script type="text/javascript" src="controller/MstPembelianController.js"></script>
+        <script type="text/javascript" src="controller/MstPpobPaketData.js"></script>
+        <script type="text/javascript" src="controller/MstPpobGame.js"></script>
+        <script type="text/javascript" src="controller/MstPpobPayment.js"></script>
+        <script type="text/javascript" src="controller/ReportController.js"></script>
+        <script type="text/javascript" src="controller/ListTransactionController.js"></script>
+    </body>
+
+</html>

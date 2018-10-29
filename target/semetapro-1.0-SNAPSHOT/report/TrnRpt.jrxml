@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2574d42e-da20-4323-a9bd-8dd74ed4934b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     trn_nasabah.`TRAN_NUMBER` AS trn_nasabah_TRAN_NUMBER,
+     trn_nasabah.`ACCOUNT_NUMBER` AS trn_nasabah_ACCOUNT_NUMBER,
+     trn_nasabah.`TRN_TYPE` AS trn_nasabah_TRN_TYPE,
+     trn_nasabah.`AMOUNT` AS trn_nasabah_AMOUNT,
+     trn_nasabah.`TRAN_FEE` AS trn_nasabah_TRAN_FEE,
+     trn_nasabah.`NOTE` AS trn_nasabah_NOTE,
+     trn_nasabah.`USER_TRAN` AS trn_nasabah_USER_TRAN,
+     trn_nasabah.`DATE_TRAN` AS trn_nasabah_DATE_TRAN,
+     trn_nasabah.`TIME_TRAN` AS trn_nasabah_TIME_TRAN,
+     trn_nasabah.`IP_ADDRESS_TRAN` AS trn_nasabah_IP_ADDRESS_TRAN,
+     trn_nasabah.`LOCATION_TRAN` AS trn_nasabah_LOCATION_TRAN,
+     trn_nasabah.`TRAN_FROM` AS trn_nasabah_TRAN_FROM,
+     trn_nasabah.`ACCOUNT_NUMBER_AGENT` AS trn_nasabah_ACCOUNT_NUMBER_AGENT,
+     trn_nasabah.`STATUS` AS trn_nasabah_STATUS,
+     trn_nasabah.`DATE_AGEN_TRAN` AS trn_nasabah_DATE_AGEN_TRAN,
+     trn_nasabah.`TIME_AGEN_TRAN` AS trn_nasabah_TIME_AGEN_TRAN,
+     trn_nasabah.`LOCATION_AGEN_TRAN` AS trn_nasabah_LOCATION_AGEN_TRAN
+FROM
+     `trn_nasabah` trn_nasabah
+WHERE 
+     trn_nasabah.`STATUS`='1']]>
+	</queryString>
+	<field name="trn_nasabah_TRAN_NUMBER" class="java.lang.String"/>
+	<field name="trn_nasabah_ACCOUNT_NUMBER" class="java.lang.String"/>
+	<field name="trn_nasabah_TRN_TYPE" class="java.lang.String"/>
+	<field name="trn_nasabah_AMOUNT" class="java.math.BigDecimal"/>
+	<field name="trn_nasabah_TRAN_FEE" class="java.math.BigDecimal"/>
+	<field name="trn_nasabah_ACCOUNT_NUMBER_AGENT" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="8743e7dc-6ed1-4fca-8482-db777c973f74"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="3ec689a7-72c5-4bc3-a948-37721d15df60"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Metapro]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="2960aa3b-989f-4ae4-8c4a-a7f33990579a"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Report Transaction]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="080f5c65-c314-44aa-8707-1875c108badd"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="150" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3ee4d0b8-8310-4b0d-9cc2-3a033a04658e"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="150" y="1" width="126" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d03c37fe-b1d9-4926-bbe6-b5c90528528e"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Nasabah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7bbf8293-f5ec-4b9c-83de-704b90ad0fdf"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ff515ec2-c662-4fe0-a830-cbd604341acb"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8a5a5e1d-66bc-43fe-bf53-891abeb7b091"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Agent]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="123b6771-7972-4eb3-82ba-90a35fb3e079"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="150" height="20" uuid="da1fdee8-1d64-4a75-9958-0133f765715e"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trn_nasabah_TRAN_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="152" y="0" width="113" height="20" uuid="63204e60-4738-472e-b6fb-5ef5250d60d8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trn_nasabah_ACCOUNT_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="92" height="20" uuid="7d2ab967-2c31-450c-9197-d60cc6c1eacf"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trn_nasabah_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="0" width="92" height="20" uuid="ea69ab1f-a368-441a-97c2-c52384e7704a"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trn_nasabah_TRAN_FEE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="460" y="0" width="92" height="20" uuid="744c1219-10ba-4dfc-9adf-f970ad955b7c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trn_nasabah_ACCOUNT_NUMBER_AGENT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="a99b755f-18c6-466a-9865-af3459435412"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="e4e7c638-3071-4a3b-95ca-4ccbcd1531a7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="e9de9708-95b2-41d8-ac31-1aa617a45257"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
